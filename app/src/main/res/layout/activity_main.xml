@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="ie.wit.roadincident.MainActivity">
+        tools:context="ie.wit.roadincident.activities.IncidentActivity">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:orientation="vertical">
 
                 <EditText
-                        android:id="@+id/placemarkTitle"
+                        android:id="@+id/incidentTitle"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_margin="8dp"
@@ -54,7 +54,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp" />
 
-                *<Button
+                <Button
                         android:id="@+id/btnAdd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
