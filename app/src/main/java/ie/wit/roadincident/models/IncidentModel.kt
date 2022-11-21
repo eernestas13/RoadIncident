@@ -1,12 +1,14 @@
 package ie.wit.roadincident.models
 
+import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class IncidentModel(var title: String = "",
                          var description: String = "",
-                         var id: Long = 0) : Parcelable
+                         var id: Long = 0,
+                         var image: Uri = Uri.EMPTY) : Parcelable
 
 @Parcelize
 data class Location(var lat: Double = 0.0,

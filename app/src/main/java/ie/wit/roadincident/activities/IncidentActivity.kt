@@ -1,15 +1,22 @@
 package ie.wit.roadincident.activities
 
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import ie.wit.roadincident.R
 import ie.wit.roadincident.databinding.ActivityIncidentBinding
+import ie.wit.roadincident.helpers.showImagePicker
 import ie.wit.roadincident.main.MainApp
 import ie.wit.roadincident.models.IncidentModel
+import ie.wit.roadincident.models.Location
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -19,9 +26,14 @@ class IncidentActivity : AppCompatActivity() {
     var incident = IncidentModel()
     //val placemarks = ArrayList<PlacemarkModel>()
     lateinit var app: MainApp
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+    var location = Location(52.245696, -7.139102, 15f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var edit = false
 
         binding = ActivityIncidentBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,26 +48,50 @@ class IncidentActivity : AppCompatActivity() {
             incident = intent.extras?.getParcelable("incident_edit")!!
             binding.incidentTitle.setText(incident.title)
             binding.description.setText(incident.description)
+            binding.btnAdd.setText(R.string.save_incident)
+            Picasso.get()
+                .load(incident.image)
+                .into(binding.incidentImage)
+            if (incident.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_incident_image)
+            }
+
         }
 
         binding.btnAdd.setOnClickListener() {
             incident.title = binding.incidentTitle.text.toString()
             incident.description = binding.description.text.toString()
             if (incident.title.isNotEmpty()) {
-                app.incidents.create(incident.copy())
-                i("add Button Pressed: ${incident}")
-                setResult(RESULT_OK)
-                finish()
-            }
-            else {
-                Snackbar
-                    .make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                Snackbar.make(it,R.string.enter_incident_title, Snackbar.LENGTH_LONG)
                     .show()
+            } else {
+                if (edit) {
+                    app.incidents.update(incident.copy())
+                } else {
+                    app.incidents.create(incident.copy())
+                }
             }
+            i("add Button Pressed: $incident")
+            setResult(RESULT_OK)
+            finish()
         }
+
+        binding.chooseImage.setOnClickListener {
+            showImagePicker(imageIntentLauncher)
+        }
+
+        binding.incidentLocation.setOnClickListener {
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
+        registerImagePickerCallback()
+        registerMapCallback()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_incident, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -67,6 +103,43 @@ class IncidentActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                            incident.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(incident.image)
+                                .into(binding.incidentImage)
+                            binding.chooseImage.setText(R.string.change_incident_image)
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            location = result.data!!.extras?.getParcelable("location")!!
+                            i("Location == $location")
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
     }
 }
 
