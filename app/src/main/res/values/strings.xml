@@ -2,7 +2,6 @@
     <string name="app_name">RoadIncident</string>
     <string name="button_addIncident">Add Incident</string>
     <string name="hint_incidentTitle">Incident Title</string>
-    <string name="window_text">Press the button below to receive a friendly greeting from Android.</string>
-    <string name="button_label">Show Incident</string>
-    <string name="incident_text">Greetings One and All from Android!</string>
+    <string name="hint_incidentDescription">Description</string>
+    <string name="menu_addIncident">Add</string>
 </resources>

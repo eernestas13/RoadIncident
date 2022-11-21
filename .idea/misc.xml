@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/terne/IdeaProjects/RoadIncident/app/src/main/res/layout/activity_incident.xml" value="0.1757852077001013" />
+        <entry key="..\:/Users/terne/IdeaProjects/RoadIncident/app/src/main/res/layout/activity_incident_list.xml" value="0.1" />
         <entry key="..\:/Users/terne/IdeaProjects/RoadIncident/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/terne/IdeaProjects/RoadIncident/app/src/main/res/layout/card_incident.xml" value="0.1" />
+        <entry key="..\:/Users/terne/IdeaProjects/RoadIncident/app/src/main/res/menu/menu_main.xml" value="0.225" />
       </map>
     </option>
   </component>
