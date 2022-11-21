@@ -1,7 +1,15 @@
 <resources>
-    <string name="app_name">RoadIncident</string>
-    <string name="button_addIncident">Add Incident</string>
-    <string name="hint_incidentTitle">Incident Title</string>
+    <string name="app_name">incident</string>
+    <string name="button_addIncident">Add incident</string>
+    <string name="hint_incidentTitle">incident Title</string>
     <string name="hint_incidentDescription">Description</string>
     <string name="menu_addIncident">Add</string>
+    <string name="menu_cancelIncident">Cancel</string>
+    <string name="enter_incident_title">Please enter a incident Title</string>
+    <string name="save_incident">Save incident</string>
+    <string name="button_addImage">Add Image</string>
+    <string name="select_incident_image">Select incident image</string>
+    <string name="change_incident_image">Change incident image</string>
+    <string name="button_location">Set Location</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

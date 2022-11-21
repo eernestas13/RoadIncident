@@ -1,24 +1,22 @@
 package ie.wit.roadincident.activities
 
+
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ie.wit.roadincident.R
+import ie.wit.roadincident.adapters.IncidentAdapter
+import ie.wit.roadincident.adapters.IncidentListener
 import ie.wit.roadincident.databinding.ActivityIncidentListBinding
-import ie.wit.roadincident.databinding.ActivityIncidentBinding
-import ie.wit.roadincident.databinding.CardIncidentBinding
 import ie.wit.roadincident.main.MainApp
 import ie.wit.roadincident.models.IncidentModel
 
-class IncidentListActivity : AppCompatActivity() {
+class IncidentListActivity : AppCompatActivity(), IncidentListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityIncidentListBinding
@@ -34,7 +32,7 @@ class IncidentListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = IncidentAdapter(app.incidents)
+        binding.recyclerView.adapter = IncidentAdapter(app.incidents.findAll(),this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,34 +56,23 @@ class IncidentListActivity : AppCompatActivity() {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.incidents.size)
+                notifyItemRangeChanged(0,app.incidents.findAll().size)
             }
         }
-}
 
-class IncidentAdapter constructor(private var incidents: List<IncidentModel>) :
-    RecyclerView.Adapter<IncidentAdapter.MainHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val binding = CardIncidentBinding
-            .inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return MainHolder(binding)
+    override fun onIncidentClick(incident: IncidentModel) {
+        val launcherIntent = Intent(this, IncidentActivity::class.java)
+        launcherIntent.putExtra("incident_edit", incident)
+        getClickResult.launch(launcherIntent)
     }
 
-    override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val incident = incidents[holder.adapterPosition]
-        holder.bind(incident)
-    }
-
-    override fun getItemCount(): Int = incidents.size
-
-    class MainHolder(private val binding : CardIncidentBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(incident: IncidentModel) {
-            binding.incidentTitle.text = incident.title
-            binding.description.text = incident.description
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.incidents.findAll().size)
+            }
         }
-    }
 }
