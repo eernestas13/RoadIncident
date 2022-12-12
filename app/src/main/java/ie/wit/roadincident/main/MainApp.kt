@@ -10,7 +10,6 @@ import timber.log.Timber.i
 
 class MainApp : Application(){
 
-    //val incidents = ArrayList<IncidentModel>()
     lateinit var incidents : IncidentStore
 
     override fun onCreate() {

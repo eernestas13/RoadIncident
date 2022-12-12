@@ -24,7 +24,6 @@ class IncidentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityIncidentBinding
     var incident = IncidentModel()
-    //val placemarks = ArrayList<PlacemarkModel>()
     lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
@@ -61,7 +60,7 @@ class IncidentActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener() {
             incident.title = binding.incidentTitle.text.toString()
             incident.description = binding.description.text.toString()
-            if (incident.title.isNotEmpty()) {
+            if (incident.title.isEmpty()) {
                 Snackbar.make(it,R.string.enter_incident_title, Snackbar.LENGTH_LONG)
                     .show()
             } else {

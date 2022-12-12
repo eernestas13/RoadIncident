@@ -70,10 +70,11 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
             ActivityResultContracts.StartActivityForResult()
         )    { }
 
-    override fun onIncidentClick(incident: IncidentModel, pos : Int) {
+    //override fun onIncidentClick(incident: IncidentModel, pos : Int) {
+    override fun onIncidentClick(incident: IncidentModel) {
         val launcherIntent = Intent(this, IncidentActivity::class.java)
         launcherIntent.putExtra("incident_edit", incident)
-        position = pos
+        //position = pos
         getClickResult.launch(launcherIntent)
     }
 
@@ -85,11 +86,9 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.incidents.findAll().size)
             }
-            else // Deleting
-                if (it.resultCode == 99)
-                    (binding.recyclerView.adapter)?.notifyItemRemoved(position)
+//            else // Deleting
+//                if (it.resultCode == 99)
+//                    (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
-
-
 
 }

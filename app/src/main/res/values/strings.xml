@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">incident</string>
-    <string name="button_addIncident">Add incident</string>
-    <string name="hint_incidentTitle">incident Title</string>
+    <string name="button_addIncident">Add Incident</string>
+    <string name="hint_incidentTitle">Incident Title</string>
     <string name="hint_incidentDescription">Description</string>
     <string name="menu_addIncident">Add</string>
     <string name="menu_cancelIncident">Cancel</string>
