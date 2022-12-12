@@ -35,6 +35,10 @@ class IncidentMemStore : IncidentStore {
         }
     }
 
+    override fun delete(incident: IncidentModel) {
+        incidents.remove(incident)
+    }
+
     private fun logAll() {
         incidents.forEach { i("$it") }
     }

@@ -20,6 +20,7 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityIncidentListBinding
+    private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,10 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 val launcherIntent = Intent(this, IncidentActivity::class.java)
                 getResult.launch(launcherIntent)
             }
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, IncidentMapsActivity::class.java)
+                mapIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -60,9 +65,15 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
             }
         }
 
-    override fun onIncidentClick(incident: IncidentModel) {
+    private val mapIntentLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        )    { }
+
+    override fun onIncidentClick(incident: IncidentModel, pos : Int) {
         val launcherIntent = Intent(this, IncidentActivity::class.java)
         launcherIntent.putExtra("incident_edit", incident)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
 
@@ -74,5 +85,11 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.incidents.findAll().size)
             }
+            else // Deleting
+                if (it.resultCode == 99)
+                    (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
+
+
+
 }
