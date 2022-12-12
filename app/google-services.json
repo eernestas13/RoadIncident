@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "402920142979",
+    "project_id": "incidentapp-a36bf",
+    "storage_bucket": "incidentapp-a36bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402920142979:android:e75b7ec3805c0cd67483b6",
+        "android_client_info": {
+          "package_name": "ie.wit.roadincident"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402920142979-cipu29lm2hsm4gu6i08ib0etk2225g6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ie.wit.roadincident",
+            "certificate_hash": "96356dfc8ce8fe518d3605c65d07a83c7166d7ac"
+          }
+        },
+        {
+          "client_id": "402920142979-c661qjqdkooa2j6ahgciqbbu121l1kjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCszsnBH6QbMGqGIOHbn_F-tHu-YnjlwyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402920142979-c661qjqdkooa2j6ahgciqbbu121l1kjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

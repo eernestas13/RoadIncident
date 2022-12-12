@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">incident</string>
+    <string name="app_name">Road Incidents</string>
     <string name="button_addIncident">Add Incident</string>
     <string name="hint_incidentTitle">Incident Title</string>
     <string name="hint_incidentDescription">Description</string>
+    <string name="hint_incidentNumVehicles">Number of Vehicles</string>
     <string name="menu_addIncident">Add</string>
     <string name="menu_cancelIncident">Cancel</string>
     <string name="enter_incident_title">Please enter a incident Title</string>

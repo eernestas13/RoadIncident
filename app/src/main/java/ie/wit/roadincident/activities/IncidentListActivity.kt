@@ -86,9 +86,9 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.incidents.findAll().size)
             }
-//            else // Deleting
-//                if (it.resultCode == 99)
-//                    (binding.recyclerView.adapter)?.notifyItemRemoved(position)
+            else // Deleting
+                if (it.resultCode == 99)
+                    (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
 
 }

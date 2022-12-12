@@ -16,6 +16,7 @@ import ie.wit.roadincident.R
 import ie.wit.roadincident.databinding.ActivityIncidentMapsBinding
 import ie.wit.roadincident.databinding.ContentMainBinding
 import ie.wit.roadincident.main.MainApp
+import ie.wit.roadincident.models.IncidentJSONStore
 
 
 class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener {
@@ -68,8 +69,10 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
         contentBinding.mapView.onSaveInstanceState(outState)
     }
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentTitle.text = marker.title
-
+        contentBinding.currentTitle.text = "Marker Info :"
+        contentBinding.currentDescription.text = marker.title
+        //contentBinding.imageView2.draw(IncidentJSONStore)
+        val desc = marker.tag as? String
         return false
     }
 
@@ -77,11 +80,19 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
         map.uiSettings.isZoomControlsEnabled = true
         app.incidents.findAll().forEach {
             val loc = LatLng(it.lat, it.lng)
-            val options = MarkerOptions().title(it.title).position(loc)
-            map.addMarker(options)?.tag = it.id
+            val titleM = MarkerOptions().title(it.title).position(loc)
+            val descriptionM = MarkerOptions().title(it.description).position(loc)
+            map.addMarker(titleM)?.tag = it.id
+         //   map.addMarker(descriptionM)?.tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
             map.setOnMarkerClickListener(this)
         }
     }
+    private fun GoogleMap.addMarker(descriptionM: String): Marker? {
+
+        return TODO("Provide the return value")
+    }
 
 }
+
+

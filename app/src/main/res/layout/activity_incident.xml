@@ -17,7 +17,7 @@
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:background="@color/grey"
                 android:fitsSystemWindows="true"
                 app:elevation="0dip"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -43,7 +43,7 @@
                 <EditText
                         android:id="@+id/incidentTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="69dp"
                         android:layout_margin="8dp"
                         android:autofillHints=""
                         android:hint="@string/hint_incidentTitle"
@@ -52,12 +52,12 @@
                         android:maxLines="1"
                         android:padding="8dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"/>
 
                 <EditText
                         android:id="@+id/description"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="60dp"
                         android:layout_margin="8dp"
                         android:hint="@string/hint_incidentDescription"
                         android:inputType="text"
@@ -65,49 +65,60 @@
                         android:maxLines="1"
                         android:padding="8dp"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"/>
+
+                <EditText
+                        android:id="@+id/numOfVehicles"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="8dp"
+                        android:hint="@string/hint_incidentNumVehicles"
+                        android:inputType="text"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="14sp"/>
+
+                <ImageView
+                        android:id="@+id/incidentImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="144dp"
+                        app:srcCompat="@drawable/ic_baseline_insert_photo_24"/>
 
                 <Button
                         android:id="@+id/chooseImage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:background="@color/colorAccent"
+                        android:background="@color/grey"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp"
                         android:text="@string/button_addImage"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16sp"/>
-
-                <ImageView
-                        android:id="@+id/incidentImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@mipmap/ic_launcher"/>
-
-                <Button
-                        android:id="@+id/btnAdd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:background="@color/colorAccent"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:stateListAnimator="@null"
-                        android:text="@string/button_addIncident"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
                 <Button
                         android:id="@+id/incidentLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:background="@color/colorAccent"
+                        android:background="@color/grey"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp"
                         android:stateListAnimator="@null"
                         android:text="@string/button_location"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"/>
+                <Button
+                        android:id="@+id/btnAdd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:background="@color/grey"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:stateListAnimator="@null"
+                        android:text="@string/button_addIncident"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16sp"/>
             </LinearLayout>

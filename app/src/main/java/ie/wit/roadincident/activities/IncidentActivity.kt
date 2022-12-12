@@ -2,6 +2,7 @@ package ie.wit.roadincident.activities
 
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import ie.wit.roadincident.R
@@ -17,6 +20,8 @@ import ie.wit.roadincident.helpers.showImagePicker
 import ie.wit.roadincident.main.MainApp
 import ie.wit.roadincident.models.IncidentModel
 import ie.wit.roadincident.models.Location
+
+
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -36,6 +41,7 @@ class IncidentActivity : AppCompatActivity() {
 
         binding = ActivityIncidentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
 
@@ -47,6 +53,7 @@ class IncidentActivity : AppCompatActivity() {
             incident = intent.extras?.getParcelable("incident_edit")!!
             binding.incidentTitle.setText(incident.title)
             binding.description.setText(incident.description)
+            //binding.num
             binding.btnAdd.setText(R.string.save_incident)
             Picasso.get()
                 .load(incident.image)
@@ -96,7 +103,40 @@ class IncidentActivity : AppCompatActivity() {
     }
 
 
-        override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//    private fun getDeviceLocation() {
+//        /*
+//         * Get the best and most recent location of the device, which may be null in rare
+//         * cases when a location is not available.
+//         */
+//        try {
+//            if (locationPermissionGranted) {
+//                val locationResult = fusedLocationProviderClient.lastLocation
+//                locationResult.addOnCompleteListener(this) { task ->
+//                    if (task.isSuccessful) {
+//                        // Set the map's camera position to the current location of the device.
+//                        lastKnownLocation = task.result
+//                        if (lastKnownLocation != null) {
+//                            map?.moveCamera(CameraUpdateFactory.newLatLngZoom(
+//                                LatLng(lastKnownLocation!!.latitude,
+//                                    lastKnownLocation!!.longitude), DEFAULT_ZOOM.toFloat()))
+//                        }
+//                    } else {
+//                        Log.d(TAG, "Current location is null. Using defaults.")
+//                        Log.e(TAG, "Exception: %s", task.exception)
+//                        map?.moveCamera(CameraUpdateFactory
+//                            .newLatLngZoom(defaultLocation, DEFAULT_ZOOM.toFloat()))
+//                        map?.uiSettings?.isMyLocationButtonEnabled = false
+//                    }
+//                }
+//            }
+//        } catch (e: SecurityException) {
+//            Log.e("Exception: %s", e.message, e)
+//        }
+//    }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_incident, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -108,7 +148,7 @@ class IncidentActivity : AppCompatActivity() {
             }
             R.id.item_delete -> {
                 app.incidents.delete(incident)
-                setResult(RESULT_OK)
+                setResult(99)
                 finish()
             }
         }

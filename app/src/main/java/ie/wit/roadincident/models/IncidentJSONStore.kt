@@ -47,6 +47,7 @@ class IncidentJSONStore(private val context: Context) : IncidentStore {
         if (foundIncident != null) {
             foundIncident.title = incident.title
             foundIncident.description = incident.description
+            foundIncident.numVehicles = incident.numVehicles
             foundIncident.image = incident.image
             foundIncident.lat = incident.lat
             foundIncident.lng = incident.lng
