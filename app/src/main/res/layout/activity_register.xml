@@ -78,15 +78,18 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:padding="2dp"
-            android:text="Already have an account?" tools:layout_editor_absoluteY="612dp"
-            tools:layout_editor_absoluteX="110dp" tools:ignore="MissingConstraints"/>
+            android:text="Already have an account?"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
+            tools:layout_editor_absoluteX="110dp" tools:ignore="MissingConstraints" android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/login"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:padding="2dp"
             android:text="Login"
-            tools:layout_editor_absoluteY="612dp" tools:layout_editor_absoluteX="273dp"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegister"
+
+            tools:layout_editor_absoluteX="273dp"
+            tools:ignore="MissingConstraints" android:layout_marginTop="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

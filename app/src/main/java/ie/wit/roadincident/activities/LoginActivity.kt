@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -23,8 +25,9 @@ class LoginActivity : AppCompatActivity() {
             binding = ActivityLoginBinding.inflate(layoutInflater)
             setContentView(R.layout.activity_login)
 
-            binding.buttonLogin.setOnClickListener {
-                user.userName = binding.userName.text.toString()
+            findViewById<Button>(R.id.buttonLogin).setOnClickListener {
+                user.userName = findViewById<TextView>(R.id.userName).text.toString()
+                user.userPassword = findViewById<TextView>(R.id.userPassword).text.toString()
                 when {
                     TextUtils.isEmpty(user.userName.trim { it <= ' '}) -> {
                         Toast.makeText(
@@ -55,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                                             Toast.LENGTH_SHORT
                                         ).show()
 
-                                        val intent = Intent(this@LoginActivity, IncidentActivity::class.java)
+                                        val intent = Intent(this@LoginActivity, IncidentListActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
                                         intent.putExtra("email_id", email)

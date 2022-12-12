@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import ie.wit.roadincident.R
@@ -25,9 +27,11 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_register)
+       
+        findViewById<Button>(R.id.buttonRegister).setOnClickListener {
+            user.userName = findViewById<TextView>(R.id.userName).text.toString()
+            user.userPassword = findViewById<TextView>(R.id.userPassword).text.toString()
 
-        binding.buttonRegister.setOnClickListener {
-            user.userName = binding.userName.text.toString()
             when {
                 TextUtils.isEmpty(user.userName.trim { it <= ' '}) -> {
                     Toast.makeText(
@@ -58,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    val intent = Intent(this@RegisterActivity, IncidentActivity::class.java)
+                                    val intent = Intent(this@RegisterActivity, IncidentListActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", firebaseUser.uid)
                                     intent.putExtra("email_id", email)
