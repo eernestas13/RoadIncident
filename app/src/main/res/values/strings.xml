@@ -4,6 +4,8 @@
     <string name="hint_incidentTitle">Incident Title</string>
     <string name="hint_incidentDescription">Description</string>
     <string name="hint_incidentNumVehicles">Number of Vehicles</string>
+    <string name="hint_login">Username</string>
+    <string name="hint_password">Password</string>
     <string name="menu_addIncident">Add</string>
     <string name="menu_cancelIncident">Cancel</string>
     <string name="enter_incident_title">Please enter a incident Title</string>
