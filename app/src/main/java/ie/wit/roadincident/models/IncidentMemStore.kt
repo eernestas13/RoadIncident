@@ -27,6 +27,10 @@ class IncidentMemStore : IncidentStore {
         if (foundIncident != null) {
             foundIncident.title = incident.title
             foundIncident.description = incident.description
+            foundIncident.image = incident.image
+            foundIncident.lat = incident.lat
+            foundIncident.lng = incident.lng
+            foundIncident.zoom = incident.zoom
             logAll()
         }
     }

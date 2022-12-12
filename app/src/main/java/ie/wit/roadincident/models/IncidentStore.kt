@@ -4,4 +4,5 @@ interface IncidentStore {
     fun findAll(): List<IncidentModel>
     fun create(incident: IncidentModel)
     fun update(incident: IncidentModel)
+    fun delete(incident: IncidentModel)
 }

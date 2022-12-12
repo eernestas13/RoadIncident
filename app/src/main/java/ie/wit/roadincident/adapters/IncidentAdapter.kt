@@ -3,6 +3,7 @@ package ie.wit.roadincident.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ie.wit.roadincident.databinding.CardIncidentBinding
 import ie.wit.roadincident.models.IncidentModel
 
@@ -35,6 +36,7 @@ class IncidentAdapter constructor(private var incidents: List<IncidentModel>,
         fun bind(incident: IncidentModel, listener: IncidentListener) {
             binding.incidentTitle.text = incident.title
             binding.description.text = incident.description
+            Picasso.get().load(incident.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onIncidentClick(incident) }
         }
     }
