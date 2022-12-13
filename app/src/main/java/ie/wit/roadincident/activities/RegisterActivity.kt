@@ -27,7 +27,14 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_register)
-       
+
+
+        findViewById<Button>(R.id.loginButtonRegister).setOnClickListener {
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+//            startActivity(intent)
+//            finish()
+        }
+
         findViewById<Button>(R.id.buttonRegister).setOnClickListener {
             user.userName = findViewById<TextView>(R.id.userName).text.toString()
             user.userPassword = findViewById<TextView>(R.id.userPassword).text.toString()

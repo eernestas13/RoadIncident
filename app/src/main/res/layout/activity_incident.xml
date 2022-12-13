@@ -73,12 +73,20 @@
                         android:layout_height="60dp"
                         android:layout_margin="8dp"
                         android:hint="@string/hint_incidentNumVehicles"
-                        android:inputType="text"
+
+                        android:inputType="number"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:padding="8dp"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp"/>
+
+<!--                <NumberPicker-->
+<!--                        android:id="@+id/numOfVehicles"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="60dp"-->
+
+<!--                />-->
 
                 <ImageView
                         android:id="@+id/incidentImage"
@@ -91,7 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:background="@color/grey"
+                        android:backgroundTint="#59339C"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp"
                         android:text="@string/button_addImage"
@@ -102,7 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:background="@color/grey"
+                        android:backgroundTint="#59339C"
                         android:paddingBottom="8dp"
                         android:paddingTop="8dp"
                         android:stateListAnimator="@null"
@@ -114,7 +122,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:background="@color/grey"
+                        android:backgroundTint="#53A156"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
                         android:stateListAnimator="@null"

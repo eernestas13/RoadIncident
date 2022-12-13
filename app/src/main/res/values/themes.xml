@@ -15,6 +15,9 @@
         <!-- Customize your theme here. -->
 
     </style>
+    <style name="Button.Grey" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimaryVariant">@color/grey</item>
+    </style>
     <style name="Theme.RoadIncident.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

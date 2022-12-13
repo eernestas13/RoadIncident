@@ -43,7 +43,7 @@
             android:id="@+id/buttonLogin"
             android:layout_width="250dp"
             android:layout_height="0dp" app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/grey"
+            android:backgroundTint="#59339C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/userPassword"
             android:layout_marginBottom="78dp" app:layout_constraintHorizontal_bias="0.496"/>
@@ -76,24 +76,23 @@
     </LinearLayout>
     <TextView
             android:id="@+id/dontHaveAccount"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_width="155dp"
             android:padding="2dp"
             android:text="Dont have an account?"
             app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-            tools:ignore="MissingConstraints" android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.975"
-            app:layout_constraintEnd_toStartOf="@+id/register"/>
-    <TextView
-            android:id="@+id/register"
-            android:layout_height="22dp"
-            android:layout_width="59dp"
+            tools:ignore="MissingConstraints" android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.889"
+            app:layout_constraintEnd_toStartOf="@+id/registerButtonLogin" app:autoSizeTextType="none"/>
+    <Button
+            android:id="@+id/registerButtonLogin"
+            android:layout_height="40dp"
+            android:layout_width="110dp"
             android:padding="2dp"
             android:text="Register"
             app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
             tools:ignore="MissingConstraints" android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.61"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/dontHaveAccount"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="68dp"/>
     <androidx.constraintlayout.widget.Barrier android:layout_width="wrap_content" android:layout_height="wrap_content"
                                               app:constraint_referenced_ids="dontHaveAccount" android:id="@+id/barrier2"
                                               app:barrierDirection="top" tools:layout_editor_absoluteY="604dp"/>

@@ -74,7 +74,6 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
     override fun onIncidentClick(incident: IncidentModel) {
         val launcherIntent = Intent(this, IncidentActivity::class.java)
         launcherIntent.putExtra("incident_edit", incident)
-        //position = pos
         getClickResult.launch(launcherIntent)
     }
 

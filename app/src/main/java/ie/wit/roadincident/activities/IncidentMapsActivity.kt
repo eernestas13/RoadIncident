@@ -1,6 +1,9 @@
 package ie.wit.roadincident.activities
 
+import android.media.Image
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -17,6 +20,9 @@ import ie.wit.roadincident.databinding.ActivityIncidentMapsBinding
 import ie.wit.roadincident.databinding.ContentMainBinding
 import ie.wit.roadincident.main.MainApp
 import ie.wit.roadincident.models.IncidentJSONStore
+import ie.wit.roadincident.models.IncidentModel
+import ie.wit.roadincident.databinding.FragmentFirstBinding
+import ie.wit.roadincident.databinding.FragmentSecondBinding
 
 
 class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener {
@@ -25,6 +31,7 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
     private lateinit var contentBinding: ContentMainBinding
     lateinit var map: GoogleMap
     lateinit var app: MainApp
+    var picture = IncidentModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +48,10 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
         contentBinding.mapView.getMapAsync {
             map = it
             configureMap()
+
+            findViewById<Button>(R.id.backButton).setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 
@@ -72,6 +83,8 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
         contentBinding.currentTitle.text = "Marker Info :"
         contentBinding.currentDescription.text = marker.title
         //contentBinding.imageView2.draw(IncidentJSONStore)
+     //   IncidentModel.map findViewById<Image>(R.id.buttonLogin) =
+        //picture.image = findViewById<Uri>(R.id.image)
         val desc = marker.tag as? String
         return false
     }

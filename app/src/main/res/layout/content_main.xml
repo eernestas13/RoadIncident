@@ -70,4 +70,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
+    <Button
+            android:id="@+id/backButton"
+            android:text="Back"
+            android:theme="@color/grey"
+            android:backgroundTint="#59339C"
+            android:layout_width="79dp"
+            android:layout_height="49dp" tools:layout_editor_absoluteY="1dp"
+            tools:layout_editor_absoluteX="1dp" tools:ignore="MissingConstraints"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

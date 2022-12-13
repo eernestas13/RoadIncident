@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ie.wit.roadincident.databinding.CardIncidentBinding
 import ie.wit.roadincident.models.IncidentModel
+import ie.wit.roadincident.databinding.ActivityIncidentBinding
+
+private lateinit var binding2: ActivityIncidentBinding
 
 interface IncidentListener {
 
@@ -18,6 +21,7 @@ class IncidentAdapter constructor(private var incidents: List<IncidentModel>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardIncidentBinding
+
             .inflate(LayoutInflater.from(parent.context), parent, false)
 
         return MainHolder(binding)
@@ -34,8 +38,10 @@ class IncidentAdapter constructor(private var incidents: List<IncidentModel>,
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(incident: IncidentModel, listener: IncidentListener) {
+
             binding.incidentTitle.text = incident.title
             binding.description.text = incident.description
+            binding.numOfVehicles.text = incident.numVehicles
             Picasso.get().load(incident.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onIncidentClick(incident) }
         }
