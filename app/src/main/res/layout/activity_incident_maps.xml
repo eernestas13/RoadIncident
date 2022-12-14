@@ -7,34 +7,45 @@
                                                    android:layout_height="match_parent"
                                                    tools:context=".activities.IncidentMapsActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/grey"
-            android:fitsSystemWindows="true"
-            app:elevation="0dip"
-            app:layout_constraintBottom_toTopOf="@+id/include"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleTextColor="@color/colorPrimary" />
-    </com.google.android.material.appbar.AppBarLayout>
 
     <include
-            android:id="@+id/include"
-            layout="@layout/content_main"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"/>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:fitsSystemWindows="true"
+        app:elevation="0dip"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp" app:contentInsetStart="290dp"
+        app:layout_constraintStart_toStartOf="parent" app:titleTextColor="@color/colorPrimary"
+        tools:layout_editor_absoluteY="0dp" tools:ignore="MissingConstraints">
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Back"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            tools:layout_conversion_absoluteHeight="48dp" tools:layout_conversion_absoluteWidth="108dp"
+            tools:layout_editor_absoluteX="16dp" tools:layout_editor_absoluteY="4dp"/>
+    </androidx.appcompat.widget.Toolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

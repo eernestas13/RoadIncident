@@ -1,20 +1,32 @@
 package ie.wit.roadincident.activities
 
 
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.NumberPicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 import com.squareup.picasso.Picasso
 import ie.wit.roadincident.R
 import ie.wit.roadincident.databinding.ActivityIncidentBinding
@@ -35,9 +47,10 @@ class IncidentActivity : AppCompatActivity() {
     lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-
+    val db = Firebase.firestore
     //var location = Location(52.245696, -7.139102, 15f)
 
+    @SuppressLint("LogNotTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -76,12 +89,18 @@ class IncidentActivity : AppCompatActivity() {
             incident.title = binding.incidentTitle.text.toString()
             incident.description = binding.description.text.toString()
             incident.numVehicles = binding.numOfVehicles.text.toString()
-            if (incident.title.isEmpty()) {
-                Snackbar.make(it,R.string.enter_incident_title, Snackbar.LENGTH_LONG)
-                    .show()
-//                if (incident.title.isEmpty()) {
-//                    Snackbar.make(it,R.string.enter_incident_title, Snackbar.LENGTH_LONG)
-//                        .show()
+
+
+            if (incident.title.isEmpty())
+//                Snackbar.make(it,R.string.enter_incident_title, Snackbar.LENGTH_LONG)
+//                    .show()
+                     { Toast.makeText(
+                        this@IncidentActivity,
+                        "Failed Creation! Title is Necessary!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+
             } else {
                 if (edit) {
                     app.incidents.update(incident.copy())
@@ -110,9 +129,33 @@ class IncidentActivity : AppCompatActivity() {
             mapIntentLauncher.launch(launcherIntent)
         }
 
+        binding.buttonUpload.setOnClickListener() {
+            db.collection("Incidents")
+                .add(incident)
+                .addOnSuccessListener { Toast.makeText(
+                    this@IncidentActivity,
+                    "Incident Uploaded!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                }
+                .addOnFailureListener { Toast.makeText(
+                    this@IncidentActivity,
+                    "Incident Failed to Upload!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                }
+
+        }
+
         registerImagePickerCallback()
         registerMapCallback()
+
+
     }
+
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_incident, menu)

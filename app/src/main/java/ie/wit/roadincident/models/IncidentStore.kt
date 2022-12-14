@@ -1,6 +1,8 @@
 package ie.wit.roadincident.models
 
-interface IncidentStore {
+import android.widget.EditText
+
+interface IncidentStore  {
     fun findAll(): List<IncidentModel>
     fun create(incident: IncidentModel)
     fun update(incident: IncidentModel)

@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="ie.wit.roadincident.activities.IncidentActivity">
+        tools:context="ie.wit.roadincident.activities.IncidentActivity"
+        android:background="@color/background_color">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -20,117 +21,132 @@
                 android:background="@color/grey"
                 android:fitsSystemWindows="true"
                 app:elevation="0dip"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                 tools:ignore="MissingConstraints">
 
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbarAdd"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:titleTextColor="@color/colorPrimary" />
+                    android:layout_height="match_parent"
+                    app:titleTextColor="@color/colorPrimary"/>
+
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/appBarLayout"
-                android:fillViewport="true">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/appBarLayout"
+            android:fillViewport="true" app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="ExtraText" android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/incidentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:hint="@string/hint_incidentTitle"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/description"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarAdd" />
+
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="8dp"
+                android:hint="@string/hint_incidentDescription"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/numOfVehicles"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_margin="8dp"
+                android:hint="@string/hint_incidentNumVehicles"
+
+                android:inputType="number"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
+
+            <!--                <NumberPicker-->
+            <!--                        android:id="@+id/numOfVehicles"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="60dp"-->
+
+            <!--                />-->
+
+            <ImageView
+                android:id="@+id/incidentImage"
+                android:layout_width="match_parent"
+                android:layout_height="117dp"
+                app:srcCompat="@drawable/ic_baseline_insert_photo_24" />
+
+            <Button
+                    android:id="@+id/chooseImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_margin="16dp"
+                    android:backgroundTint="#59339C"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/button_addImage"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"/>
+            <Button
+                    android:id="@+id/incidentLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="#59339C"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/button_location"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"/>
+            <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="#53A156"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/button_addIncident"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"/>
 
-                <EditText
-                        android:id="@+id/incidentTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="69dp"
-                        android:layout_margin="8dp"
-                        android:autofillHints=""
-                        android:hint="@string/hint_incidentTitle"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="14sp"/>
-
-                <EditText
-                        android:id="@+id/description"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="8dp"
-                        android:hint="@string/hint_incidentDescription"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="14sp"/>
-
-                <EditText
-                        android:id="@+id/numOfVehicles"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_margin="8dp"
-                        android:hint="@string/hint_incidentNumVehicles"
-
-                        android:inputType="number"
-                        android:maxLength="25"
-                        android:maxLines="1"
-                        android:padding="8dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="14sp"/>
-
-<!--                <NumberPicker-->
-<!--                        android:id="@+id/numOfVehicles"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="60dp"-->
-
-<!--                />-->
-
-                <ImageView
-                        android:id="@+id/incidentImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="144dp"
-                        app:srcCompat="@drawable/ic_baseline_insert_photo_24"/>
-
-                <Button
-                        android:id="@+id/chooseImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:backgroundTint="#59339C"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp"
-                        android:text="@string/button_addImage"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp"/>
-                <Button
-                        android:id="@+id/incidentLocation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:backgroundTint="#59339C"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp"
-                        android:stateListAnimator="@null"
-                        android:text="@string/button_location"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp"/>
-                <Button
-                        android:id="@+id/btnAdd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:backgroundTint="#53A156"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:stateListAnimator="@null"
-                        android:text="@string/button_addIncident"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="16sp"/>
-            </LinearLayout>
-        </ScrollView>
+            <Button
+                android:id="@+id/buttonUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#F44336"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:stateListAnimator="@null"
+                android:text="Upload" />
+        </LinearLayout>
+    </ScrollView>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

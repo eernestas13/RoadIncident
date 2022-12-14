@@ -8,7 +8,7 @@ internal fun getId(): Long {
     return lastId++
 }
 
-class IncidentMemStore : IncidentStore {
+abstract class IncidentMemStore : IncidentStore {
 
     val incidents = ArrayList<IncidentModel>()
 

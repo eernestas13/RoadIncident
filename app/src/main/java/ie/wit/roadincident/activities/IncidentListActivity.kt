@@ -1,19 +1,30 @@
 package ie.wit.roadincident.activities
 
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.roadincident.R
 import ie.wit.roadincident.adapters.IncidentAdapter
 import ie.wit.roadincident.adapters.IncidentListener
 import ie.wit.roadincident.databinding.ActivityIncidentListBinding
 import ie.wit.roadincident.main.MainApp
+import ie.wit.roadincident.models.IncidentJSONStore
 import ie.wit.roadincident.models.IncidentModel
 
 class IncidentListActivity : AppCompatActivity(), IncidentListener {
@@ -21,6 +32,10 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityIncidentListBinding
     private var position: Int = 0
+    private lateinit var searchView: SearchView
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    //private lateinit var switchDarkLight: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +44,17 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
 
+
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = IncidentAdapter(app.incidents.findAll(),this)
+
     }
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -42,6 +62,10 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var edit = false
+
+
+
         when (item.itemId) {
             R.id.item_add -> {
                 val launcherIntent = Intent(this, IncidentActivity::class.java)
@@ -51,8 +75,20 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 val launcherIntent = Intent(this, IncidentMapsActivity::class.java)
                 mapIntentLauncher.launch(launcherIntent)
             }
+            R.id.switchDarkLight -> {
+                if (darkThemeOn()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                } else  {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun Context.darkThemeOn(): Boolean {
+        return resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
     }
 
     private val getResult =
@@ -70,7 +106,6 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
             ActivityResultContracts.StartActivityForResult()
         )    { }
 
-    //override fun onIncidentClick(incident: IncidentModel, pos : Int) {
     override fun onIncidentClick(incident: IncidentModel) {
         val launcherIntent = Intent(this, IncidentActivity::class.java)
         launcherIntent.putExtra("incident_edit", incident)
@@ -90,4 +125,9 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
 
+
+
 }
+
+
+

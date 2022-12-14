@@ -34,6 +34,7 @@ class IncidentJSONStore(private val context: Context) : IncidentStore {
         return incidents
     }
 
+
     override fun create(incident: IncidentModel) {
         incident.id = generateRandomId()
         incidents.add(incident)

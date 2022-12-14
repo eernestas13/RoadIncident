@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <!--    <style name="Theme.RoadIncident" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+
     <style name="Theme.RoadIncident" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <!--        <item name="colorPrimary">@color/purple_500</item>-->
@@ -22,6 +22,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="Theme.RoadIncident.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="Theme.RoadIncident.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="Theme.RoadIncident.AppBarOverlay" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+    <style name="Theme.RoadIncident.PopupOverlay" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
 </resources>
