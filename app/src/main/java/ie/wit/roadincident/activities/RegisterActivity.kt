@@ -31,8 +31,6 @@ class RegisterActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.loginButtonRegister).setOnClickListener {
             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-//            startActivity(intent)
-//            finish()
         }
 
         findViewById<Button>(R.id.buttonRegister).setOnClickListener {

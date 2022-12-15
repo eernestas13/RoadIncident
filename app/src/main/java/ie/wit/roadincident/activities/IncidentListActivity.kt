@@ -35,11 +35,6 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
     private var position: Int = 0
     private lateinit var searchView: SearchView
     private lateinit var firebaseAuth: FirebaseAuth
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    //private lateinit var switchDarkLight: Button
-
-    //greetUser
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIncidentListBinding.inflate(layoutInflater)
@@ -56,8 +51,6 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
 
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
-
-
     }
 
     private fun checkUser() {
@@ -78,10 +71,6 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var edit = false
-
-
-
         when (item.itemId) {
             R.id.item_add -> {
                 val launcherIntent = Intent(this, IncidentActivity::class.java)
@@ -144,9 +133,6 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 if (it.resultCode == 99)
                     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
-
-
-
 }
 
 

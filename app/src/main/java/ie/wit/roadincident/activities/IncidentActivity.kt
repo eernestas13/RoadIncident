@@ -48,7 +48,6 @@ class IncidentActivity : AppCompatActivity() {
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     val db = Firebase.firestore
-    //var location = Location(52.245696, -7.139102, 15f)
 
     @SuppressLint("LogNotTimber")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +58,6 @@ class IncidentActivity : AppCompatActivity() {
 
         binding = ActivityIncidentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-       // binding.numOfVehicles = findViewById<TextView>(R.id.numOfVehicles).text.toString()
 
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
@@ -92,8 +89,6 @@ class IncidentActivity : AppCompatActivity() {
 
 
             if (incident.title.isEmpty())
-//                Snackbar.make(it,R.string.enter_incident_title, Snackbar.LENGTH_LONG)
-//                    .show()
                      { Toast.makeText(
                         this@IncidentActivity,
                         "Failed Creation! Title is Necessary!",
@@ -152,11 +147,6 @@ class IncidentActivity : AppCompatActivity() {
 
 
     }
-
-
-
-
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_incident, menu)
         return super.onCreateOptionsMenu(menu)

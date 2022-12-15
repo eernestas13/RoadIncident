@@ -82,10 +82,6 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
     override fun onMarkerClick(marker: Marker): Boolean {
         contentBinding.currentTitle.text = "Marker Info :"
         contentBinding.currentDescription.text = marker.title
-       // contentBinding.imageView2 =
-        //contentBinding.imageView2.draw(IncidentJSONStore)
-     //   IncidentModel.map findViewById<Image>(R.id.buttonLogin) =
-        //picture.image = findViewById<Uri>(R.id.image)
         val desc = marker.tag as? String
         return false
     }
@@ -102,8 +98,6 @@ class IncidentMapsActivity : AppCompatActivity(),GoogleMap.OnMarkerClickListener
             map.setOnMarkerClickListener(this)
         }
     }
-
-
 }
 
 

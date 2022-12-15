@@ -196,8 +196,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarker
                             break
                         }
                     }
-
-
                 } else {
                     Log.e(TAG, "Exception: %s", task.exception)
                 }
