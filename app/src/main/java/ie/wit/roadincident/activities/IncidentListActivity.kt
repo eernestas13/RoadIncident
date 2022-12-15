@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import ie.wit.roadincident.R
 import ie.wit.roadincident.adapters.IncidentAdapter
 import ie.wit.roadincident.adapters.IncidentListener
@@ -33,9 +34,11 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
     private lateinit var binding: ActivityIncidentListBinding
     private var position: Int = 0
     private lateinit var searchView: SearchView
+    private lateinit var firebaseAuth: FirebaseAuth
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     //private lateinit var switchDarkLight: Button
 
+    //greetUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +54,22 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = IncidentAdapter(app.incidents.findAll(),this)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+        checkUser()
+
+
     }
 
-
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } else {
+            val email = firebaseUser.email
+            binding.greetUser.text = email
+        }
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,6 +97,10 @@ class IncidentListActivity : AppCompatActivity(), IncidentListener {
                 } else  {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
+            }
+            R.id.logoutButton -> {
+                firebaseAuth.signOut()
+                checkUser()
             }
         }
         return super.onOptionsItemSelected(item)

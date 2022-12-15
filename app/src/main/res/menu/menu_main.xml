@@ -9,8 +9,13 @@
 <!--        app:showAsAction="always"/>-->
     <item
         android:id="@+id/switchDarkLight"
+        android:icon="?attr/actionModeCopyDrawable"
+        android:title="switchDarkLight"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/logoutButton"
         android:icon="@drawable/common_full_open_on_phone"
-        android:title="@string/menu_addIncident"
+        android:title="logoutButton"
         app:showAsAction="always"/>
     <item
             android:id="@+id/item_add"
